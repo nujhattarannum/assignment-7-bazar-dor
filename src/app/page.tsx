@@ -1,10 +1,14 @@
+import AllProduct from '@/components/AllProduct';
+import Banner from '@/components/Banner';
 import React from 'react';
 
 const page = () => {
   return (
-    <div>
-      
-    </div>
+   <main className="min-h-screen bg-[#f4f6f3]">
+      <Banner />
+      <AllProduct />
+    </main>
+   
   );
 };
 

@@ -1,26 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-
-export interface CategoryItem {
-  slug: string;
-  title: string;
-  topicId: string | null;
-  url: string;
-  scrapable: boolean;
-}
+import { ICategory } from '../../type/categoriesType';
 
 
-export interface CategoriesApiResponse {
-  success: boolean;
-  count: number;
-  cachedAt: string;
-  data: CategoryItem[];
-}
 
 const Navbar = async() => {
 
-    const res = await fetch ('https://news-api-v2.vercel.app/api/categories');
-    const {data} :CategoriesApiResponse = await res.json();
+    const res = await fetch ('https://api.abcz.workers.dev/api/bazardor/categories');
+    const categories : ICategory[]= await res.json();
 
 
 return (
@@ -29,11 +16,11 @@ return (
         {categories.map((item) => (
           <Link 
             key={item.id} 
-            href={item.href}
+            href=''
             className="flex items-center gap-2 hover:text-emerald-600 transition-colors whitespace-nowrap"
           >
-            <span className="text-base">{item.emoji}</span>
-            <span>{item.label}</span>
+            <span className="text-base">{item.icon}</span>
+            <span>{item.nameBn}</span>
           </Link>
         ))}
       </div>
