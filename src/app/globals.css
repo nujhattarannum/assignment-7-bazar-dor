@@ -1,2 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f4f6f4; /* or your preferred light background */
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+}

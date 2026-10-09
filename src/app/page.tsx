@@ -1,13 +1,13 @@
 import AllProduct from '@/components/AllProduct';
 import Banner from '@/components/Banner';
-import Marquee from '@/components/Marquee';
+import SelectiveProduct from '@/components/SelectiveProduct';
 import React from 'react';
 
 const page = () => {
   return (
    <main className="min-h-screen bg-[#f4f6f3]">
-    <Marquee/>
       <Banner />
+      <SelectiveProduct/>
       <AllProduct />
     </main>
    

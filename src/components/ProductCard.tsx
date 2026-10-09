@@ -1,5 +1,6 @@
 import React from 'react';
 import { Product } from '../../type/categoriesType';
+import Link from 'next/link';
 
 
 type ProductCardProps = {
@@ -12,6 +13,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   } = product;
 
   return (
+    <Link
+          key={product.id} 
+          href={`/details/${product.id}`}
+          className="block transition-transform hover:scale-[1.01]"
+        >
     <div className="flex min-w-[280px] flex-col justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
 
       {/* Top Section */}
@@ -72,6 +78,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       </div>
     </div>
+    </Link>
   );
 };
 
