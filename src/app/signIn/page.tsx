@@ -44,7 +44,7 @@ const Page = () => {
 
           {/* Email Field */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               ইমেইল
             </label>
             <input
@@ -60,7 +60,7 @@ const Page = () => {
 
           {/* Password Field */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               পাসওয়ার্ড
             </label>
             <input
@@ -90,7 +90,7 @@ const Page = () => {
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-200"></div>
           </div>
-          <span className="relative bg-white px-3 text-xs text-gray-400 font-medium">
+          <span className="relative bg-white px-3 text-xs text-gray-500 font-medium">
             অথবা
           </span>
         </div>

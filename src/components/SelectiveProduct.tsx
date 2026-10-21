@@ -25,7 +25,7 @@ const topUpProducts = [...upProducts]
 
    return (
     <section className="w-full bg-[#f4f6f3] py-8 px-4 sm:px-6 lg:px-8 ">
-      <div className="max-w-7xl mx-auto mb-6">
+      <div className="max-w-[1080px] mx-auto mb-6">
         {/* Header for price up*/}
        
           <h2 className=" mb-6 text-2xl font-extrabold text-gray-900">
@@ -41,7 +41,7 @@ const topUpProducts = [...upProducts]
         </div>
       </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1080px] mx-auto">
         {/* Header for price down */}
       
           <h2 className=" mb-6 text-2xl font-extrabold text-gray-900">

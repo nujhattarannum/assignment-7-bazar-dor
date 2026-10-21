@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Header = () => {
 return (
-    <header className="w-full bg-white border-b border-gray-100 py-3 px-6">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className=" w-full bg-white border-b border-gray-200 py-3 px-6">
+      <div className="   max-w-[1080px] mx-auto  flex items-center justify-between">
         
         {/* Left Section: Brand Logo, Title & Date */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -15,7 +15,7 @@ return (
 
           {/* Title & Bengali Date */}
           <div>
-            <h1 className="text-xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-2xl font-bold text-gray-900 leading-tight">
               বাজার দর
             </h1>
             <p className="text-xs text-gray-500 font-medium mt-0.5">
@@ -28,7 +28,7 @@ return (
         <div className="flex items-center gap-6">
           {/* Sign In Text Link */}
           <Link 
-            href="/login" 
+            href="/signIn" 
             className="text-sm font-semibold text-gray-800 hover:text-emerald-600 transition-colors"
           >
             সাইন ইন
@@ -36,7 +36,7 @@ return (
 
           {/* Sign Up Solid Green Button */}
           <Link 
-            href="/register" 
+            href="/signUp" 
             className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2 rounded-xl shadow-sm transition-colors"
           >
             সাইন আপ

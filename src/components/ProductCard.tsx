@@ -7,6 +7,25 @@ type ProductCardProps = {
   product: Product;
 };
 
+// Bangla translation helpers
+const toBanglaNumber = (num: number | string): string => {
+  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return num
+    .toString()
+    .replace(/\d/g, (digit) => banglaDigits[parseInt(digit, 10)]);
+};
+
+const toBanglaUnit = (unit: string): string => {
+  const unitMap: Record<string, string> = {
+    kg: 'কেজি',
+    litre: 'লিটার',
+    liter: 'লিটার',
+    dozen: 'ডজন',
+    piece: 'পিস',
+  };
+  return unitMap[unit.toLowerCase()] || unit;
+};
+
 const ProductCard = ({ product }: ProductCardProps) => {
   const {
     change: { dir, pct },
@@ -18,7 +37,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           href={`/details/${product.id}`}
           className="block transition-transform hover:scale-[1.01]"
         >
-    <div className="flex min-w-[280px] flex-col justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+    <div className="flex min-w-[280px] flex-col justify-between rounded-xl border border-gray-100 bg-white p-4 shadow-md">
 
       {/* Top Section */}
       <div className="flex items-center gap-3">
@@ -28,12 +47,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div>
-          <h3 className="text-base font-bold leading-tight text-gray-900">
+          <h3 className="text-xl font-bold leading-tight text-gray-900">
             {product.nameBn}
           </h3>
 
-          <p className="mt-0.5 text-xs text-gray-500">
-            প্রতি {product.unit}
+          <p className="mt-0.5 text-sm text-gray-600">
+            প্রতি {toBanglaUnit(product.unit)}
           </p>
         </div>
 
@@ -43,13 +62,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="mt-4 flex items-end justify-between">
 
         <div>
-          <p className="text-xs font-medium text-gray-400">
+          <p className="text-sm font-medium text-gray-600">
             আজকের দাম
           </p>
 
-          <p className="mt-0.5 text-lg font-extrabold text-gray-900">
-            {product.today}{" "}
-            <span className="text-sm font-semibold">
+          <p className="mt-0.5 text-xl font-bold text-gray-900">
+            {toBanglaNumber(product.today)}{' '}
+            <span className="text-md font-bold">
               টাকা
             </span>
           </p>
@@ -73,7 +92,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 : "—"}
           </span>
 
-          <span>{pct}%</span>
+          <span>{toBanglaNumber(pct)}%</span>
         </div>
 
       </div>

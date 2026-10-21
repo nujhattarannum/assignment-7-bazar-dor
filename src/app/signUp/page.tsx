@@ -1,29 +1,48 @@
 'use client';
 
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Page = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+ 
+  
+const handleSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  const user = Object.fromEntries(formData.entries()) as {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  };
+
+  if (user.password !== user.confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  const { data, error } = await authClient.signUp.email({
+    ...user,
+    callbackURL: "/",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  if (error) {
+    console.error(error);
+    alert(error.message);
+    return;
+  }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Sign up submitted:", formData);
-    // Add your signup API or Auth call here
-  };
-
+  if (data) {
+    console.log(data);
+    // Redirect or navigate after successful signup.
+    redirect("/");
+  }
+};
+  
   return (
     <div className="min-h-screen bg-[#f3f6f3] text-gray-800 flex flex-col items-center justify-center p-4">
       
@@ -43,64 +62,56 @@ const Page = () => {
           
           {/* Name Field */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               নাম
             </label>
             <input
               type="text"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
               placeholder="যেমন: রহিম উদ্দিন"
-              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-400"
+              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-500"
               required
             />
           </div>
 
           {/* Email Field */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               ইমেইল
             </label>
             <input
               type="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-400"
+              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-500"
               required
             />
           </div>
 
           {/* Password Field */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               পাসওয়ার্ড
             </label>
             <input
               type="password"
               name="password"
-              value={formData.password}
-              onChange={handleChange}
               placeholder="কমপক্ষে ৮ অক্ষর"
-              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-400"
+              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-500"
               required
             />
           </div>
 
           {/* Confirm Password Field */}
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
               পাসওয়ার্ড নিশ্চিত করুন
             </label>
             <input
               type="password"
               name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
               placeholder="আবার লিখুন"
-              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-400"
+              className="w-full px-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all text-gray-800 placeholder-gray-500"
               required
             />
           </div>
@@ -108,7 +119,7 @@ const Page = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 bg-[#008744] hover:bg-[#00753a] text-white font-bold text-sm rounded-xl shadow-sm transition-colors mt-2 cursor-pointer"
+            className="w-full py-3 bg-[#008744] hover:bg-[#00753a] text-white font-bold text-sm rounded-xl shadow-md transition-colors mt-2 cursor-pointer"
           >
             অ্যাকাউন্ট তৈরি করুন
           </button>
@@ -119,7 +130,7 @@ const Page = () => {
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-200"></div>
           </div>
-          <span className="relative bg-white px-3 text-xs text-gray-400 font-medium">
+          <span className="relative bg-white px-3 text-xs text-gray-500 font-medium">
             অথবা
           </span>
         </div>

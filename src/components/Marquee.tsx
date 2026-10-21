@@ -12,6 +12,18 @@ const toBanglaNumber = (value: number) => {
     .replace(/\d/g, (digit) => banglaDigits[Number(digit)]);
 };
 
+const toBanglaUnit = (unit: string): string => {
+  const unitMap: Record<string, string> = {
+    kg: 'কেজি',
+    litre: 'লিটার',
+    liter: 'লিটার',
+    dozen: 'ডজন',
+    piece: 'পিস',
+  };
+  return unitMap[unit.toLowerCase()] || unit;
+};
+
+
 const Marquee = async () => {
 
   const response = await fetch( "https://api.abcz.workers.dev/api/bazardor/products" );
@@ -44,7 +56,7 @@ const Marquee = async () => {
 
                 {/* Price */}
                 <span className="mx-1 text-gray-600">
-                  {toBanglaNumber(product.today)} টাকা/{product.unit}
+                  {toBanglaNumber(product.today)} টাকা/ {toBanglaUnit(product.unit)}
                 </span>
 
                 {/* Change */}

@@ -3,12 +3,12 @@ import React from 'react';
 
 const Banner = () => {
      return (
-    <section className="bg-[#f4f6f3] px-4 py-6 mx-auto mt-6 flex h-[265px] max-w-[1050px] items-center justify-between rounded-[22px] border border-[#dfe7e1] bg-[#f8faf8] px-4 sm:px-6 lg:px-4">
+    <section className="bg-[#f4f6f3] px-4 py-6 mx-auto mt-6 flex h-[265px] max-w-[1080px] items-center justify-between rounded-[22px] border border-[#dfe7e1] bg-[#f8faf8] shadow-sm px-4 sm:px-6 lg:px-4">
 
       {/* Left Content */}
       <div className="flex-1">
         {/* Eyebrow */}
-        <div className="mb-3 inline-flex rounded-full bg-[#e3f3e8] px-3 py-1 text-[13px] font-medium text-[#07883f]">
+        <div className="mb-3 inline-flex rounded-full bg-[#e3f3e8] px-3 py-1 text-[14px] font-medium text-[#07883f]">
           মঙ্গলবার, ৬ অক্টোবর, ২০২৬
         </div>
 
@@ -18,7 +18,7 @@ const Banner = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-4 max-w-[600px] text-[15px] leading-[1.55] text-[#68736d]">
+        <p className="mt-4 max-w-[600px] text-[16px] leading-[1.55] text-gray-500">
           চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তৃত,
           দ্রুত, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
         </p>

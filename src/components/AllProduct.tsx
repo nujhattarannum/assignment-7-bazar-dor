@@ -17,11 +17,11 @@ const AllProduct = async() => {
 
    return (
     <section className="w-full bg-[#f4f6f3] py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Kutaa */}
+      <div className="max-w-[1080px] mx-auto">
+        {/* Header */}
         <div className="mb-6">
           <h2 className="text-2xl font-extrabold text-gray-900">সব পণ্য</h2>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-sm text-gray-700 mt-1">
             মোট {toBanglaNumber(allProducts.length)}টি পণ্য দেখানো হচ্ছে
           </p>
         </div>

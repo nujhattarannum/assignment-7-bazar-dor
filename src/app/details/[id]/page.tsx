@@ -4,6 +4,25 @@ import Link from 'next/link';
 import React, { useEffect, useState, use } from 'react';
 import { MarketPrice, Product } from '../../../../type/categoriesType';
 
+// Bangla translation helpers
+const toBanglaNumber = (num: number | string): string => {
+  const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return num
+    .toString()
+    .replace(/\d/g, (digit) => banglaDigits[parseInt(digit, 10)]);
+};
+
+const toBanglaUnit = (unit: string): string => {
+  const unitMap: Record<string, string> = {
+    kg: 'কেজি',
+    litre: 'লিটার',
+    liter: 'লিটার',
+    dozen: 'ডজন',
+    piece: 'পিস',
+  };
+  return unitMap[unit.toLowerCase()] || unit;
+};
+
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   // Unwrap params in Next.js 15+
   const resolvedParams = use(params);
@@ -19,14 +38,15 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`	/api/bazardor/products?category={product.category}`);
-
-        if (!response.ok) {
+        const response = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${productId}`);
+       if (!response.ok) {
           throw new Error("পণ্যটির তথ্য লোড করা যায়নি");
         }
-
+      
         const data: Product = await response.json();
         setProduct(data);
+ 
+
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -37,11 +57,11 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
         setLoading(false);
       } 
     }
-
+  
     if (productId) {
       fetchProductDetails();
     }
-  }, [productId]);
+}, [productId]);
 
   // Loading State
   if (loading) {
@@ -88,10 +108,10 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
             <div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">{product.nameBn}</h1>
-              <p className="text-xs sm:text-sm text-gray-500 mt-1">{product.unit} · {product.categoryNameBn || product.category}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">{toBanglaUnit(product.unit)} · {product.categoryNameBn || product.category}</p>
               
               <p className="text-xs sm:text-sm text-gray-600 mt-2">
-                গতকালের তুলনায় আজ দাম <span className="font-bold text-gray-900">{product.change.dir === "up" ? "বেড়েছে" : "কমেছে"}</span> · {priceDiff} টাকা
+                গতকালের তুলনায় আজ দাম <span className="font-bold text-gray-900">{product.change.dir === "up" ? "বেড়েছে" : "কমেছে"}</span> · {toBanglaNumber(priceDiff)} টাকা
               </p>
             </div>
           </div>
@@ -100,11 +120,11 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
           <div className="bg-gray-100/80 rounded-2xl p-4 text-center min-w-[140px] w-full sm:w-auto flex-shrink-0">
             <span className="text-xs text-gray-500 font-medium block">আজকের দাম</span>
             <span className="text-3xl sm:text-4xl font-extrabold text-gray-900 block my-0.5">
-              {product.today}
+              {toBanglaNumber(product.today)}
             </span>
             <span className="text-xs text-gray-500 block">টাকা / কেজি</span>
             <span className={`text-xs font-bold inline-flex items-center justify-center gap-1 mt-1 ${product.change.dir === "up" ? 'text-red-600' : 'text-emerald-600'}`}>
-              {product.change.dir === "up" ? '▲' : '▼'} {product.change.pct}%
+              {product.change.dir === "up" ? '▲' : '▼'} {toBanglaNumber(product.change.pct)}%
             </span>
           </div>
         </div>
@@ -120,7 +140,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
               <div className="bg-gray-50/70 rounded-2xl p-5 border border-gray-100">
                 <span className="text-xs text-gray-500 font-medium block">সর্বনিম্ন দাম</span>
                 <span className="text-2xl font-bold text-emerald-600 block mt-1">
-                  {minPrice} টাকা
+                  {toBanglaNumber(minPrice)} টাকা
                 </span>
                 <span className="text-xs text-gray-500 block mt-1">সবচেয়ে কম দামের বাজার</span>
               </div>
@@ -128,7 +148,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
               <div className="bg-gray-50/70 rounded-2xl p-5 border border-gray-100">
                 <span className="text-xs text-gray-500 font-medium block">সর্বাধিক দাম</span>
                 <span className="text-2xl font-bold text-red-500 block mt-1">
-                  {maxPrice} টাকা
+                  {toBanglaNumber(maxPrice)} টাকা
                 </span>
                 <span className="text-xs text-gray-500 block mt-1">সবচেয়ে বেশি দামের বাজার</span>
               </div>
@@ -136,7 +156,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
               <div className="bg-gray-50/70 rounded-2xl p-5 border border-gray-100">
                 <span className="text-xs text-gray-500 font-medium block">গড় দাম</span>
                 <span className="text-2xl font-bold text-emerald-600 block mt-1">
-                  {product.today} টাকা
+                  {toBanglaNumber(product.today)} টাকা
                 </span>
                 <span className="text-xs text-gray-500 block mt-1">প্রতি কেজি-এর হিসাবে</span>
               </div>
@@ -165,9 +185,9 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
                       <tr key={index} className="hover:bg-gray-50/80 transition-colors">
                         <td className="py-3.5 px-2 font-semibold text-gray-900">{row.market}</td>
                         <td className="py-3.5 px-2 text-gray-600">{row.division}</td>
-                        <td className="py-3.5 px-2 text-center text-gray-700">{row.min} টাকা</td>
-                        <td className="py-3.5 px-2 text-center text-gray-700">{row.max} টাকা</td>
-                        <td className="py-3.5 px-2 text-right font-extrabold text-gray-900">{rowAvg} টাকা</td>
+                        <td className="py-3.5 px-2 text-center text-gray-700">{toBanglaNumber(row.min)} টাকা</td>
+                        <td className="py-3.5 px-2 text-center text-gray-700">{toBanglaNumber(row.max)} টাকা</td>
+                        <td className="py-3.5 px-2 text-right font-extrabold text-gray-900">{toBanglaNumber(rowAvg)} টাকা</td>
                       </tr>
                     );
                   })}
