@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState, use } from 'react';
 import { MarketPrice, Product } from '../../../../type/categoriesType';
+import Breadcrumb from '@/components/Breadcrumb';
 
 // Bangla translation helpers
 const toBanglaNumber = (num: number | string): string => {
@@ -100,6 +101,19 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
     <div className="min-h-screen bg-[#f3f6f3] text-gray-800 py-6">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
+      {/* 2. DYNAMIC BREADCRUMB COMPONENT */}
+      <div>
+        <Breadcrumb
+          items={[
+            { label: 'হোম', href: '/' },
+            { 
+              label: product.categoryNameBn , 
+              href: `/category/${product.category}` 
+            },
+            { label: product.nameBn  }
+          ]}
+        />
+      </div>
         {/* Top Card */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
           <div className="flex items-center gap-5">

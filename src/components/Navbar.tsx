@@ -9,7 +9,7 @@ const Navbar = async() => {
     const categories : ICategory[] = await res.json();
     
 return (
-    <nav className ="w-full bg-white border-b border-gray-200 py-2.5 ">
+   <nav className="w-full bg-white border-b border-gray-200 py-2.5 px-4 sm:px-6">
      <CategoryNavLinks categories={categories} />
     </nav>
   );
