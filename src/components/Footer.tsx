@@ -3,15 +3,15 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-[1080px] mx-auto px-4 h-[58px] flex items-center justify-between">
+      <div className="max-w-[1080px] mx-auto  h-[58px] flex items-center justify-between">
 
         {/* Left Text */}
-        <p className="text-xs text-gray-900">
+        <p className="text-sm text-gray-900">
           বাজার দর — প্রত্যেকটি পণ্যের দাম এক নজরে।
         </p>
 
         {/* Right Text */}
-        <p className="text-xs text-gray-700">
+        <p className="text-sm text-gray-700">
           সকল দাম সংগ্রহ; বাজার ব্যবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
         </p>
 
