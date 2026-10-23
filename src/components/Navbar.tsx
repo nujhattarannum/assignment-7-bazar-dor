@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ICategory } from '../../type/categoriesType';
+import CategoryNavLinks from './CategoryNavLinks';
 
 const Navbar = async() => {
 
@@ -9,19 +10,7 @@ const Navbar = async() => {
     
 return (
     <nav className ="w-full bg-white border-b border-gray-200 py-2.5 ">
-      <div className="max-w-[1080px] mx-auto flex items-center justify-start gap-8 overflow-x-auto text-sm text-gray-700 font-medium scrollbar-none">
-        {
-        categories.map((item) => (
-          <Link 
-            key={item.id} 
-            href={`/category/${item.slug}`}
-            className="flex items-center gap-2 hover:text-emerald-600 transition-colors whitespace-nowrap"
-          >
-            <span className="text-base">{item.icon}</span>
-            <span className="font-bold">{item.nameBn}</span>
-          </Link>
-         ))}
-      </div>
+     <CategoryNavLinks categories={categories} />
     </nav>
   );
 

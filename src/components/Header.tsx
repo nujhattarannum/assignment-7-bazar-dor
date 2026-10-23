@@ -1,18 +1,24 @@
 import React from 'react';
 import Link from "next/link";
+import Image from 'next/image';
 
 const Header = () => {
 return (
     <header className=" w-full bg-white border-b border-gray-200 py-3 px-6">
-      <div className="   max-w-[1080px] mx-auto  flex items-center justify-between">
+      <div className="max-w-[1080px] mx-auto  flex items-center justify-between">
         
         {/* Left Section: Brand Logo, Title & Date */}
         <Link href="/" className="flex items-center gap-3 group">
           {/* Green Shopping Cart Icon Box */}
-          <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white text-xl shadow-sm">
-            🛒
-          </div>
-
+         
+        <Image
+  src="/logo-icon.png"
+  alt="Logo"
+  width={40}
+  height={40}
+  quality={100}
+  className="bg-emerald-600 rounded-xl p-2 object-contain"
+/>
           {/* Title & Bengali Date */}
           <div>
             <h1 className="text-2xl font-bold text-gray-900 leading-tight">

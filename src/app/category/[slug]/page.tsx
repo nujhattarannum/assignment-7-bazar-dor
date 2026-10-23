@@ -22,10 +22,10 @@ const toBanglaNumber = (num: number | string): string => {
 
 const CategoryWisePage = async ({ params, searchParams }: PageProps) => {
   const {slug} = await params;
- const { sort } = await searchParams; // Read sort state from URL
+  const {sort} = await searchParams; // Read sort state from URL
 
-const res = await fetch (`https://api.abcz.workers.dev/api/bazardor/products?category=${slug}`)
-const data :Product[] = await res.json()
+  const res = await fetch (`https://api.abcz.workers.dev/api/bazardor/products?category=${slug}`)
+  const data :Product[] = await res.json()
 
 
 // 2. Sort array based on the query parameter
