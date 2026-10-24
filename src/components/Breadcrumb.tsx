@@ -12,7 +12,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb = ({ items }: BreadcrumbProps) => {
   return (
-    <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6 font-medium">
+    <nav className="flex items-center gap-2 text-sm text-gray-900 mb-6 font-medium">
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
 
@@ -22,7 +22,7 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
             {item.href && !isLast ? (
               <Link
                 href={item.href}
-                className="hover:text-emerald-600 transition-colors text-gray-700"
+                className="hover:text-emerald-600 transition-colors "
               >
                 {item.label}
               </Link>

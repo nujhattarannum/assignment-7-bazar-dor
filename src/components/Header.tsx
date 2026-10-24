@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from "next/link";
 import Image from 'next/image';
+import UserProfile from './UserProfile';
 
 const Header = () => {
   return (
@@ -28,22 +29,7 @@ const Header = () => {
         </Link>
 
         {/* Right Section: Sign In & Sign Up Buttons */}
-        <div className="flex items-center gap-3 sm:gap-6">
-          <Link 
-            href="/signIn" 
-            className="text-xs sm:text-sm font-semibold text-gray-800 hover:text-emerald-600 transition-colors"
-          >
-            সাইন ইন
-          </Link>
-
-          <Link 
-            href="/signUp" 
-            className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-xl shadow-sm transition-colors whitespace-nowrap"
-          >
-            সাইন আপ
-          </Link>
-        </div>
-
+         <UserProfile/>
       </div>
     </header>
   );
