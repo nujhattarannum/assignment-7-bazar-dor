@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# বাজার দর (BazarDor)
 
-## Getting Started
+> প্রয়োজনীয় পণ্যের দাম এক নজরে — Track and compare daily commodity prices across regional markets in Bangladesh.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📌 Short Description
+**BazarDor** (বাজার দর) is a modern web application built to track and display daily commodity prices—such as rice (*স্বর্ণমাছি চাল*), lentils, cooking oil, vegetables, fish, and meat—across various regional markets and divisions in Bangladesh. It provides consumers with transparent, up-to-date pricing insights to help navigate daily market expenses efficiently.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Frontend & Framework:** [Next.js (App Router)](https://nextjs.org/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
+* **Styling & UI Components:** [Tailwind CSS](https://tailwindcss.com/), [DaisyUI](https://daisyui.com/)
+* **Authentication:** [Better Auth](https://better-auth.com/) (Email/Password & Social OAuth)
+* **Database & ORM:** MySQL
+* **Tools & Deployment:** Git, GitHub, Vercel
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ 5 Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Daily Commodity Price Tracking:** Access up-to-date rates for essential kitchen market items like rice, lentils, oil, vegetables, fish, and meat in real-time.
+2. **Regional Market Breakdown:** Filter and view commodity price fluctuations across different regional markets and divisions in Bangladesh.
+3. **Secure Authentication System:** Robust user sign-in and sign-up powered by Better Auth, supporting secure credential-based login and social integration.
+4. **Interactive User Profile Management:** A dedicated profile dashboard allowing users to view account details, update profile information, and securely manage sessions.
+5. **Modern & Responsive UI:** Fully optimized, clean, and accessible design built with Tailwind CSS and DaisyUI, ensuring a seamless experience across mobile and desktop devices.
