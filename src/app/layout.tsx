@@ -1,3 +1,6 @@
+import { setServers } from "node:dns/promises";
+
+setServers(["1.1.1.1", "8.8.8.8"]);
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";

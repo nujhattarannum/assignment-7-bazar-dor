@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState, use } from 'react';
 import { MarketPrice, Product } from '../../../../type/categoriesType';
 import Breadcrumb from '@/components/Breadcrumb';
+import { notFound } from 'next/navigation';
 
 // Bangla translation helpers
 const toBanglaNumber = (num: number | string): string => {
@@ -76,16 +77,8 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   }
 
   // Error State
-  if (error || !product) {
-    return (
-      <div className="min-h-screen bg-[#f3f6f3] flex flex-col items-center justify-center gap-4">
-        <p className="text-red-600 font-semibold">{error || "পণ্য পাওয়া যায়নি"}</p>
-        <Link href="/" className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm">
-          হোম পেজে ফিরে যান
-        </Link>
-      </div>
-    );
-  }
+  if (error || !product) { 
+    notFound();}
 
   // Calculate overall Min, Max, and Avg dynamically from the markets array
   const allMins = product.markets?.map((m: MarketPrice) => m.min) || [];
@@ -95,7 +88,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   const maxPrice = allMaxs.length > 0 ? Math.max(...allMaxs) : product.today;
   
   // Difference between today and yesterday
-  const priceDiff = Math.abs(product.today - product.yesterday);
+  const priceDiff = Math.abs(product?.today - product?.yesterday);
 
   return (
     <div className="min-h-screen bg-[#f3f6f3] text-gray-800 py-6">

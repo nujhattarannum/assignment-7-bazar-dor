@@ -20,5 +20,5 @@ if(!user) {
 // export default function proxy(request: NextRequest) { ... }
 
 export const config = {
-  matcher: ["/profile","/details/:path"],
+  matcher: ["/details/:path"],
 }
